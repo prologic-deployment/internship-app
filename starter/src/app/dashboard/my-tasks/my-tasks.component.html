@@ -1,0 +1,218 @@
+<<<<<<< HEAD
+<section class="main-content">
+    <ul class="breadcrumb breadcrumb-style ">
+        <li class="breadcrumb-item">
+            <h5 class="page-title m-b-0">My Tasks List</h5>
+        </li>
+        <li class="breadcrumb-item bcrumb-1">
+            <a routerLink="/dashboard/main">
+                <i class="fas fa-home font-17"></i></a>
+        </li>
+        <li class="breadcrumb-item">My Tasks</li>
+        <li class="breadcrumb-item">List</li>
+    </ul>
+    <div class="section-body">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title">My Tasks</h5>
+                <div>
+                    <!-- <a class="btn" routerLink="/dashboard/offerDetails/{{offerID}}">Back to offer</a> -->
+                    <!-- <button class="btn btn-primary text-end" (click)="updateStatus(selectedTask)">Edit task</button> -->
+                </div>
+            </div>
+            <div class="empty-tasks" *ngIf="tasks.length == 0">
+                <img class="pic" src="assets/images/empty.png" alt="">
+            </div>
+            <div class="row" *ngIf="tasks.length > 0" style="padding: 10px;">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                    <h5 class="card-body title">Tasks list</h5>
+                    <div class="task-list-container">
+                        <div class="row" *ngFor="let task of tasks">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 task" (click)="selectTask(task)">
+                                <strong>{{task.title}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 no-task-selected" *ngIf="!selectedTask">
+                    <img class="pic" src="assets/images/notSelected.png" alt="">
+                    <h5> Select task to see details.</h5>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTask && showTaskDetails">
+                    <h5 class="card-body title">Selected task details</h5>
+                    <div class="task-details-container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xl-7 col-lg-7 col-md-6 col-sm-6 col-xs-12">
+                                        <strong>Title: </strong>
+                                        <span>{{selectedTask.title}}</span>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 text-end">
+                                        <strong>Status: </strong>
+                                        <div class="badge-outline col-indigo">{{selectedTask.status}}</div> &nbsp;
+                                        <strong>Priority: </strong>
+                                        <div class="badge-outline col-green"> {{selectedTask.priority}}</div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 text-end">
+                                        <!-- <div class="col-1"> -->
+                                            <i class="fas fa-pen icon" ngbPopover="Edit task"
+                                                triggers="mouseenter:mouseleave" placement="bottom"
+                                                (click)="updateStatus(selectedTask)"></i>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <strong>Description:</strong>
+                                        <p>{{selectedTask.description}}</p>
+                                    </div>
+                                    <div class="row date-bar">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Start date: </strong>{{selectedTask.startDate |
+                                            date}}</div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Deadline: </strong>{{selectedTask.endDate | date}}
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTask.closedAt"><strong>Closed at:
+                                            </strong>{{selectedTask.closedAt | date}}</div>
+                                    </div>
+                                    <div class="row executer-bar" *ngIf="selectedTask.assignedTo">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <strong>Assigned To: </strong><br>
+                                            <div class="user-assigned">
+                                                <img class="avatar" src="{{picsUrl+selectedTask.assignedTo.image}}"
+                                                    alt="">
+                                                {{selectedTask.assignedTo.firstName}}
+                                                {{selectedTask.assignedTo.lastName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row executer-bar" *ngIf="!selectedTask.assignedTo">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <strong>Assigned To: <span style="color: red;">NOT ASSIGNED
+                                                    YET</span></strong><br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-12 progress-bar">
+                                        <strong>Progress</strong>
+                                        <ngb-progressbar type="info" textType="white" [max]="100"
+                                            [value]="selectedTask.progress" [showValue]="true"></ngb-progressbar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+=======
+<section class="main-content">
+    <ul class="breadcrumb breadcrumb-style ">
+        <li class="breadcrumb-item">
+            <h5 class="page-title m-b-0">My Tasks List</h5>
+        </li>
+        <li class="breadcrumb-item bcrumb-1">
+            <a routerLink="/dashboard/main">
+                <i class="fas fa-home font-17"></i></a>
+        </li>
+        <li class="breadcrumb-item">My Tasks</li>
+        <li class="breadcrumb-item">List</li>
+    </ul>
+    <div class="section-body">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title">My Tasks</h5>
+                <div>
+                    <!-- <a class="btn" routerLink="/dashboard/offerDetails/{{offerID}}">Back to offer</a> -->
+                    <!-- <button class="btn btn-primary text-end" (click)="updateStatus(selectedTask)">Edit task</button> -->
+                </div>
+            </div>
+            <div class="empty-tasks" *ngIf="tasks.length == 0">
+                <img class="pic" src="assets/images/empty.png" alt="">
+            </div>
+            <div class="row" *ngIf="tasks.length > 0" style="padding: 10px;">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                    <h5 class="card-body title">Tasks list</h5>
+                    <div class="task-list-container">
+                        <div class="row" *ngFor="let task of tasks">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 task" (click)="selectTask(task)">
+                                <strong>{{task.title}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 no-task-selected" *ngIf="!selectedTask">
+                    <img class="pic" src="assets/images/notSelected.png" alt="">
+                    <h5> Select task to see details.</h5>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTask && showTaskDetails">
+                    <h5 class="card-body title">Selected task details</h5>
+                    <div class="task-details-container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xl-7 col-lg-7 col-md-6 col-sm-6 col-xs-12">
+                                        <strong>Title: </strong>
+                                        <span>{{selectedTask.title}}</span>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 text-end">
+                                        <strong>Status: </strong>
+                                        <div class="badge-outline col-indigo">{{selectedTask.status}}</div> &nbsp;
+                                        <strong>Priority: </strong>
+                                        <div class="badge-outline col-green"> {{selectedTask.priority}}</div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 text-end">
+                                        <!-- <div class="col-1"> -->
+                                            <i class="fas fa-pen icon" ngbPopover="Edit task"
+                                                triggers="mouseenter:mouseleave" placement="bottom"
+                                                (click)="updateStatus(selectedTask)"></i>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <strong>Description:</strong>
+                                        <p>{{selectedTask.description}}</p>
+                                    </div>
+                                    <div class="row date-bar">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Start date: </strong>{{selectedTask.startDate |
+                                            date}}</div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Deadline: </strong>{{selectedTask.endDate | date}}
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTask.closedAt"><strong>Closed at:
+                                            </strong>{{selectedTask.closedAt | date}}</div>
+                                    </div>
+                                    <div class="row executer-bar" *ngIf="selectedTask.assignedTo">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <strong>Assigned To: </strong><br>
+                                            <div class="user-assigned">
+                                                <img class="avatar" src="{{picsUrl+selectedTask.assignedTo.image}}"
+                                                    alt="">
+                                                {{selectedTask.assignedTo.firstName}}
+                                                {{selectedTask.assignedTo.lastName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row executer-bar" *ngIf="!selectedTask.assignedTo">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <strong>Assigned To: <span style="color: red;">NOT ASSIGNED
+                                                    YET</span></strong><br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-12 progress-bar">
+                                        <strong>Progress</strong>
+                                        <ngb-progressbar type="info" textType="white" [max]="100"
+                                            [value]="selectedTask.progress" [showValue]="true"></ngb-progressbar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+>>>>>>> origin/main
+</section>

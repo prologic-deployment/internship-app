@@ -1,0 +1,75 @@
+<<<<<<< HEAD
+<div class="modal-header editRowModal">
+    <h4 class="modal-title" id="modal-basic-title">
+        <div class="table-modal-header">
+            <div class="modal-about">
+                <div class="fw-bold p-t-10 font-17">
+                    Edit task </div>
+            </div>
+        </div>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form class="register-form" [formGroup]="editTaskForm" (ngSubmit)="onSubmit(editTaskForm)">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+                <label>Progress<span class="text-danger">*</span></label>
+                <input type="range" class="form-range" formControlName="progress" min="0" max="100" step="1" value="0" >
+                <small class="form-text text-danger"
+                    *ngIf="!editTaskForm.get('progress')?.valid && editTaskForm.get('progress')?.touched"> Progress
+                    is required
+                </small>
+            </div>
+          </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit task</button>
+
+            <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+</div>
+
+
+=======
+<div class="modal-header editRowModal">
+    <h4 class="modal-title" id="modal-basic-title">
+        <div class="table-modal-header">
+            <div class="modal-about">
+                <div class="fw-bold p-t-10 font-17">
+                    Edit task </div>
+            </div>
+        </div>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form class="register-form" [formGroup]="editTaskForm" (ngSubmit)="onSubmit(editTaskForm)">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+                <label>Progress<span class="text-danger">*</span></label>
+                <input type="range" class="form-range" formControlName="progress" min="0" max="100" step="1" value="0" >
+                <small class="form-text text-danger"
+                    *ngIf="!editTaskForm.get('progress')?.valid && editTaskForm.get('progress')?.touched"> Progress
+                    is required
+                </small>
+            </div>
+          </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit task</button>
+
+            <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+</div>
+
+
+>>>>>>> origin/main

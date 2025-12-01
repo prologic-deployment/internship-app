@@ -1,0 +1,322 @@
+<<<<<<< HEAD
+.section-detail{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    margin-right: 10px;
+    height: 65vh;
+}
+.section-create{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    margin-right: 10px;
+    width: 560px;
+    height: 50vh;
+}
+.details-bottom{
+    padding: 20px;
+    background-color: #c5d8f1;
+    border-radius: 15px;
+    // position: inherit;
+}
+.techs-bottom{
+    padding: 20px;
+    background-color: #d37ef553;
+    border-radius: 15px;
+    // position: inherit;
+}
+.assign-quiz{
+    padding: 20px;
+    background-color: #fac88a70;
+    border-radius: 15px;
+}
+.body-section-detail{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.quiz-title{
+    background-color: #f7f9d4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    
+}
+.quiz-title:hover{
+    background-color: #f3f6c3;
+    cursor: pointer;
+}
+
+.icon{
+    padding: 10px;
+    color: rgb(247, 148, 109);
+}
+.icon:hover{
+    color: #ff6532;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    font-size: 15px;
+}
+
+
+.enc-img{
+    width: 40px;
+    height: 45px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #8a8989;
+}
+
+.quest{
+    margin-top: 20px;
+}
+.star {
+    display: flex;
+    justify-content: left;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    // max-width: 500px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.option-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-item label {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.option-item input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #007bff; /* Customize the color of the radio button */
+}
+
+.option-item span {
+    font-size: 16px;
+    color: #333;
+}
+
+
+.quiz-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    z-index: 9999; /* Ensure it appears above other content */
+    animation: modernEntrance 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+.card1 {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Modern gradient */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Elevated look */
+    padding: 40px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Optional: H1 styling */
+.card1 h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.card1 p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+=======
+.section-detail{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    margin-right: 10px;
+    height: 65vh;
+}
+.section-create{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    margin-right: 10px;
+    width: 560px;
+    height: 50vh;
+}
+.details-bottom{
+    padding: 20px;
+    background-color: #c5d8f1;
+    border-radius: 15px;
+    // position: inherit;
+}
+.techs-bottom{
+    padding: 20px;
+    background-color: #d37ef553;
+    border-radius: 15px;
+    // position: inherit;
+}
+.assign-quiz{
+    padding: 20px;
+    background-color: #fac88a70;
+    border-radius: 15px;
+}
+.body-section-detail{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.quiz-title{
+    background-color: #f7f9d4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    
+}
+.quiz-title:hover{
+    background-color: #f3f6c3;
+    cursor: pointer;
+}
+
+.icon{
+    padding: 10px;
+    color: rgb(247, 148, 109);
+}
+.icon:hover{
+    color: #ff6532;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    font-size: 15px;
+}
+
+
+.enc-img{
+    width: 40px;
+    height: 45px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #8a8989;
+}
+
+.quest{
+    margin-top: 20px;
+}
+.star {
+    display: flex;
+    justify-content: left;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    // max-width: 500px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.option-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-item label {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.option-item input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #007bff; /* Customize the color of the radio button */
+}
+
+.option-item span {
+    font-size: 16px;
+    color: #333;
+}
+
+
+.quiz-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    z-index: 9999; /* Ensure it appears above other content */
+    animation: modernEntrance 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+.card1 {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Modern gradient */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Elevated look */
+    padding: 40px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Optional: H1 styling */
+.card1 h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.card1 p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+>>>>>>> origin/main
+}

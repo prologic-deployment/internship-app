@@ -1,0 +1,485 @@
+<<<<<<< HEAD
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Dashboard</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Dashboard</li>
+  </ul>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+        <div class="card" style="background-color: rgba(30, 94, 133, 0.379);">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <h5>Network Access</h5>
+              </div>
+              <div class="col-3 text-end" *ngIf="!networkRequest">
+                <button class="btn btn-primary" (click)="sendNetworkRequest()"><i class=""></i> Send Request</button>
+              </div>
+              <div class="col-3 text-end" *ngIf="networkRequest">
+                <span class="badge rounded-pill bg-success" *ngIf="networkRequest.status==='TREATED'">TREATED</span>
+                <span class="badge rounded-pill bg-danger" *ngIf="networkRequest.status==='PENDING'">PENDING</span>
+              </div>
+            </div>
+            <div class="row" *ngIf="networkRequest">
+              <strong>SSID: 
+                <span style="color: brown;" *ngIf="networkRequest.ssid===''">NOT AVAILABLE YET</span> 
+                <span style="color: brown;">{{networkRequest.ssid}}</span>
+              </strong><br>
+              <strong>Login: 
+                <span style="color: brown;" *ngIf="networkRequest.login===''">NOT AVAILABLE YET</span>
+                <span style="color: brown;">{{networkRequest.login}}</span>
+              </strong><br>
+              <strong>Password: 
+                <span style="color: brown;" *ngIf="networkRequest.password===''">NOT AVAILABLE YET</span>
+                <span style="color: brown;">{{networkRequest.password}}</span>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card" style="background-color: rgba(166, 71, 87, 0.379);">
+          <div class="card-body">
+            <h5>Security guide</h5>
+            <strong><span style="color: brown;">FILE IS NOT AVAILABLE YET</span></strong><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+    </div>
+    <div class="row ">
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+        <div class="card stat-cards-yellow">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Projects</h5>
+                    <h2 class="mb-3 font-18 text-secondary" >{{totalProjects}}</h2>
+                    <!-- <p class="mb-0"><span class="col-green">42%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/1.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-orange">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Labs</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalLabs}}</h2>
+                    <!-- <p class="mb-0"><span class="col-red">65%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="danger" [value]="65" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/4.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-red">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">All Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-orange">33%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="warning" [value]="33" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/2.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-blue">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Pending Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalPendingTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-blue">25%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="info" [value]="25" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/3.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-green">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">In Progress Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalInProgressTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-red">65%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="danger" [value]="65" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/4.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-purple">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Completed Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalCompletedTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-green">42%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/1.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <!-- <div class="card-header">
+        <div class="row">
+          <div class="col-xl-4">
+            <h4 class="card-title">Pending Tasks</h4>
+          </div>
+          <div class="col-xl-4">
+            <h4 class="card-title">In_Progress Tasks</h4>
+          </div>
+          <div class="col-xl-4">
+            <h4 class="card-title">Completed Tasks</h4>
+          </div>
+        </div>
+      </div> -->
+      <div class="card-body">
+<div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        
+        <h5>Pending Tasks <span class="length">({{pending_tasks.length}})</span></h5>
+        
+        <div class="pending-column" *ngFor="let pending of pending_tasks">
+          <h6>{{pending.title}}</h6>
+          <span class="due-date">Due Date: {{pending.endDate | date}}</span>        
+
+        </div>
+         
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <h5> Tasks in Progress <span  class="length">({{in_progress_tasks.length}})</span></h5>
+        <div class="in_progress-column" *ngFor="let in_progress of in_progress_tasks">
+          <h6>{{in_progress.title}}</h6>
+          <span class="due-date">Due Date: {{in_progress.endDate | date}}</span>        
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+        <h5>Completed Tasks <span  class="length">({{completed_tasks.length}})</span></h5>
+        <div class="completed-column" *ngFor="let completed of completed_tasks">
+          <h6>{{completed.title}}</h6>
+          <span class="due-date">Due Date: {{completed.endDate | date}}</span>        
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+=======
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Dashboard</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Dashboard</li>
+  </ul>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+        <div class="card" style="background-color: rgba(30, 94, 133, 0.379);">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <h5>Network Access</h5>
+              </div>
+              <div class="col-3 text-end" *ngIf="!networkRequest">
+                <button class="btn btn-primary" (click)="sendNetworkRequest()"><i class=""></i> Send Request</button>
+              </div>
+              <div class="col-3 text-end" *ngIf="networkRequest">
+                <span class="badge rounded-pill bg-success" *ngIf="networkRequest.status==='TREATED'">TREATED</span>
+                <span class="badge rounded-pill bg-danger" *ngIf="networkRequest.status==='PENDING'">PENDING</span>
+              </div>
+            </div>
+            <div class="row" *ngIf="networkRequest">
+              <strong>SSID: 
+                <span style="color: brown;" *ngIf="networkRequest.ssid===''">NOT AVAILABLE YET</span> 
+                <span style="color: brown;">{{networkRequest.ssid}}</span>
+              </strong><br>
+              <strong>Login: 
+                <span style="color: brown;" *ngIf="networkRequest.login===''">NOT AVAILABLE YET</span>
+                <span style="color: brown;">{{networkRequest.login}}</span>
+              </strong><br>
+              <strong>Password: 
+                <span style="color: brown;" *ngIf="networkRequest.password===''">NOT AVAILABLE YET</span>
+                <span style="color: brown;">{{networkRequest.password}}</span>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card" style="background-color: rgba(166, 71, 87, 0.379);">
+          <div class="card-body">
+            <h5>Security guide</h5>
+            <strong><span style="color: brown;">FILE IS NOT AVAILABLE YET</span></strong><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+    </div>
+    <div class="row ">
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+        <div class="card stat-cards-yellow">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Projects</h5>
+                    <h2 class="mb-3 font-18 text-secondary" >{{totalProjects}}</h2>
+                    <!-- <p class="mb-0"><span class="col-green">42%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/1.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-orange">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Labs</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalLabs}}</h2>
+                    <!-- <p class="mb-0"><span class="col-red">65%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="danger" [value]="65" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/4.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-red">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">All Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-orange">33%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="warning" [value]="33" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/2.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-blue">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Pending Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalPendingTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-blue">25%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="info" [value]="25" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/3.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-green">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">In Progress Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalInProgressTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-red">65%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="danger" [value]="65" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/4.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card stat-cards-purple">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-15">Completed Tasks</h5>
+                    <h2 class="mb-3 font-18 text-secondary">{{totalCompletedTasks}}</h2>
+                    <!-- <p class="mb-0"><span class="col-green">42%</span></p> -->
+                  </div>
+                  <!-- <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar> -->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/1.png" alt="">
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <!-- <div class="card-header">
+        <div class="row">
+          <div class="col-xl-4">
+            <h4 class="card-title">Pending Tasks</h4>
+          </div>
+          <div class="col-xl-4">
+            <h4 class="card-title">In_Progress Tasks</h4>
+          </div>
+          <div class="col-xl-4">
+            <h4 class="card-title">Completed Tasks</h4>
+          </div>
+        </div>
+      </div> -->
+      <div class="card-body">
+<div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        
+        <h5>Pending Tasks <span class="length">({{pending_tasks.length}})</span></h5>
+        
+        <div class="pending-column" *ngFor="let pending of pending_tasks">
+          <h6>{{pending.title}}</h6>
+          <span class="due-date">Due Date: {{pending.endDate | date}}</span>        
+
+        </div>
+         
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <h5> Tasks in Progress <span  class="length">({{in_progress_tasks.length}})</span></h5>
+        <div class="in_progress-column" *ngFor="let in_progress of in_progress_tasks">
+          <h6>{{in_progress.title}}</h6>
+          <span class="due-date">Due Date: {{in_progress.endDate | date}}</span>        
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+        <h5>Completed Tasks <span  class="length">({{completed_tasks.length}})</span></h5>
+        <div class="completed-column" *ngFor="let completed of completed_tasks">
+          <h6>{{completed.title}}</h6>
+          <span class="due-date">Due Date: {{completed.endDate | date}}</span>        
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+>>>>>>> origin/main

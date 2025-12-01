@@ -1,0 +1,498 @@
+<<<<<<< HEAD
+<section class="main-content">
+    <ul class="breadcrumb breadcrumb-style ">
+        <li class="breadcrumb-item">
+            <h5 class="page-title m-b-0">Administrative Documents</h5>
+        </li>
+        <li class="breadcrumb-item bcrumb-1">
+            <a routerLink="/dashboard/main">
+                <i class="fas fa-home font-17"></i></a>
+        </li>
+        <li class="breadcrumb-item">Administrative</li>
+        <li class="breadcrumb-item">Documents</li>
+    </ul>
+    <div class="section-body">
+        <div class="card">
+            <div class="card-body" *ngIf="userDocs">
+                <div class="row">
+                    <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12">
+                        <h5 class="card-title">Administrative Documents List</h5>
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 text-end" *ngIf="userDocs[0].attestation!==''">
+                        <a href="{{attestationtUrl+'/'+userDocs[0].attestation}}" target="_blank">Dowload internship certificate 
+                            <i class="fas fa-download download" 
+                            ngbPopover="Download internship certificate"
+                            triggers="mouseenter:mouseleave"
+                            placement="top"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>Note: You have to scan the documents and upload them. <span class="text-danger">(Scanned documents gets better resolution)</span></p>
+                </div><br>
+                
+                <div class="row m-b-10" >
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>CV<span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].cv_file===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectCvfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of cvFiles" [file]="f" [removable]="true" (removed)="onRemoveCvfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].cv_file!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].cv_file }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteCv(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].cv_file==='' && cvFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadCv()">Upload Cv  <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+
+                <div class="row m-b-10" >
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship request<span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].demande_stage===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectRequestfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of requestFiles" [file]="f" [removable]="true" (removed)="onRemoveRequestfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].demande_stage!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].demande_stage }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteRequest(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].demande_stage==='' && requestFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadRequest()">Upload internship request  <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10" >
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship agreement<span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].convention===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectConventionfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of conventionFiles" [file]="f" [removable]="true" (removed)="onRemoveConventionfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].convention!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].convention }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteConvention(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].convention==='' && conventionFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadConvention()">Upload internship agreement  <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>National identity card <span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].cin===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectCinfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of cinfiles" [file]="f" [removable]="true" (removed)="onRemoveCinfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].cin!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].cin }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteCin(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].cin==='' && cinfiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadCin()">Upload identity card <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10"> 
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Assignment letter</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-8 col-sm-12" *ngIf="userDocs[0].lettre_affectation===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectLetterFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of letterFiles" [file]="f" [removable]="true" (removed)="onRemoveLetterFiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].lettre_affectation!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].lettre_affectation }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteLetter(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].lettre_affectation==='' && letterFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadLetter()">Upload assignment letter <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Attendance sheet</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].fiche_presence===''" >
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectPresenceFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of presenceFiles" [file]="f" [removable]="true" (removed)="onRemovePresenceFiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].fiche_presence!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].fiche_presence }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deletePresenceFile(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].fiche_presence==='' && presenceFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadPresence()">Upload attendance sheet <i class="fas fa-upload"></i></button>
+                    </div>
+                </div> 
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship report</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].rapport===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectReportFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of reportFiles" [file]="f" [removable]="true" (removed)="onRemoveReportFiles(f)">
+                            <ngx-dropzone-label style="width: 100%;"> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].rapport!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].rapport }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteReport(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].rapport==='' && reportFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadReport()">Upload internship report  <i class="fas fa-upload"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- <div class="row m-t-20">
+                    <div class="button-container text-end">
+                        <button class="btn btn-light m-r-10">Clear fields</button>
+                        <button class="btn btn-primary" (click)="submitDoc()">Submit documents</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+=======
+<section class="main-content">
+    <ul class="breadcrumb breadcrumb-style ">
+        <li class="breadcrumb-item">
+            <h5 class="page-title m-b-0">Administrative Documents</h5>
+        </li>
+        <li class="breadcrumb-item bcrumb-1">
+            <a routerLink="/dashboard/main">
+                <i class="fas fa-home font-17"></i></a>
+        </li>
+        <li class="breadcrumb-item">Administrative</li>
+        <li class="breadcrumb-item">Documents</li>
+    </ul>
+    <div class="section-body">
+        <div class="card">
+            <div class="card-body" *ngIf="userDocs">
+                <div class="row">
+                    <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12">
+                        <h5 class="card-title">Administrative Documents List</h5>
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 text-end" *ngIf="userDocs[0].attestation!==''">
+                        <a href="{{attestationtUrl+'/'+userDocs[0].attestation}}" target="_blank">Dowload internship certificate 
+                            <i class="fas fa-download download" 
+                            ngbPopover="Download internship certificate"
+                            triggers="mouseenter:mouseleave"
+                            placement="top"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>Note: You have to scan the documents and upload them. <span class="text-danger">(Scanned documents gets better resolution)</span></p>
+                </div><br>
+                
+                <div class="row m-b-10" >
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship request<span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].demande_stage===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectRequestfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of requestFiles" [file]="f" [removable]="true" (removed)="onRemoveRequestfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].demande_stage!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].demande_stage }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteRequest(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].demande_stage==='' && requestFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadRequest()">Upload internship request  <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10" >
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship agreement<span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].convention===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectConventionfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of conventionFiles" [file]="f" [removable]="true" (removed)="onRemoveConventionfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].convention!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].convention }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteConvention(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].convention==='' && conventionFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadConvention()">Upload internship agreement  <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>National identity card <span class="text-danger">*</span></h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].cin===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectCinfiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of cinfiles" [file]="f" [removable]="true" (removed)="onRemoveCinfiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].cin!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].cin }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteCin(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].cin==='' && cinfiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadCin()">Upload identity card <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10"> 
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Assignment letter</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-8 col-sm-12" *ngIf="userDocs[0].lettre_affectation===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectLetterFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of letterFiles" [file]="f" [removable]="true" (removed)="onRemoveLetterFiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].lettre_affectation!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].lettre_affectation }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteLetter(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].lettre_affectation==='' && letterFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadLetter()">Upload assignment letter <i class="fas fa-upload"></i></button>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Attendance sheet</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].fiche_presence===''" >
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectPresenceFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of presenceFiles" [file]="f" [removable]="true" (removed)="onRemovePresenceFiles(f)">
+                            <ngx-dropzone-label> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].fiche_presence!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].fiche_presence }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deletePresenceFile(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].fiche_presence==='' && presenceFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadPresence()">Upload attendance sheet <i class="fas fa-upload"></i></button>
+                    </div>
+                </div> 
+
+                <div class="row m-b-10">
+                    <div class="col-xl-4 col-md-4 col-sm-12 title-block">
+                        <h6>Internship report</h6>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" *ngIf="userDocs[0].rapport===''">
+                      <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelectReportFiles($event)" >
+                          <ngx-dropzone-label>You can click or drag & drop here! <br> <strong style="color: rgba(212, 61, 61, 0.738);">(only pdfs & images)</strong> </ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let f of reportFiles" [file]="f" [removable]="true" (removed)="onRemoveReportFiles(f)">
+                            <ngx-dropzone-label style="width: 100%;"> 
+                              <i class="far fa-file-pdf" style="color: rgb(220, 46, 46);font-size: 30px;"></i> 
+                              <br>{{ f.name }}
+                            </ngx-dropzone-label>
+                          </ngx-dropzone-preview>
+                      </ngx-dropzone>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12" style="padding: 15px;" *ngIf="userDocs[0].rapport!==''">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 file-container">
+                                {{ userDocs[0].rapport }}
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 text-end" style="padding: 10px; margin-top: 20px;">
+                                <button class="btn btn-danger" (click)="deleteReport(userDocs[0]._id)">Delete file <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-2 col-md-2 col-sm-12 upload-button-container" *ngIf="userDocs[0].rapport==='' && reportFiles.length>0">
+                        <button class="btn btn-primary upload-button" (click)="uploadReport()">Upload internship report  <i class="fas fa-upload"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- <div class="row m-t-20">
+                    <div class="button-container text-end">
+                        <button class="btn btn-light m-r-10">Clear fields</button>
+                        <button class="btn btn-primary" (click)="submitDoc()">Submit documents</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+>>>>>>> origin/main
+</section>
