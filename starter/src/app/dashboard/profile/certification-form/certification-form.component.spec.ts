@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CertificationFormComponent } from './certification-form.component';
@@ -20,26 +19,3 @@ describe('CertificationFormComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-=======
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CertificationFormComponent } from './certification-form.component';
-
-describe('CertificationFormComponent', () => {
-  let component: CertificationFormComponent;
-  let fixture: ComponentFixture<CertificationFormComponent>;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CertificationFormComponent]
-    });
-    fixture = TestBed.createComponent(CertificationFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
->>>>>>> origin/main
