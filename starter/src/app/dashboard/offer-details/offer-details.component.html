@@ -54,13 +54,26 @@
                 <div class="card" *ngIf="encadrant">
                     <div class="card-body">
                         <h5>Professional Mentor</h5>
-                        <div class="row">
-                            <div class="col-lg-1 col-xl-1 col-md-2 col-sm-3 col-2">
+                        <div class="row" >
+                            <div class="col-lg-2 col-xl-2 col-md-3 col-sm-4 col-2">
                                 <img src="{{ picsUrl+encadrant.image }}" class="enc-img" />
                             </div>
-                            <div class="col-lg-11 col-xl-11 col-md-10 col-sm-9 col-10 name-col-style">
+                            <div class="col-lg-10 col-xl-10 col-md-10 col-sm-9 col-10 name-col-style">
                                 <div class="font-16"><strong>{{encadrant.firstName+" "+encadrant.lastName}}</strong></div>
-                                <div class="font-14 text-muted">{{encadrant.roles}} | {{encadrant.departement}}</div>
+                                <div class="font-14 text-muted"><strong>{{encadrant.roles}} | {{encadrant.departement}}</strong></div>
+                                <div class="font-14 text-muted">
+                                    <strong>Contact</strong> : <a href="mailto:{{encadrant.email}}">{{encadrant.email}}</a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="meeting-btn-wrapper">
+                                    <button class="meeting-btn" (click)="createRequest(encadrant._id)">
+                                        Schedule Meeting <i class="far fa-calendar-alt icon"></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-btn-wrapper">
+                                    <a (click)="toggleCalendar()">Open Calendar</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +147,15 @@
                 </div>
             </div>
         </div>
-        
+        <div class="card" *ngIf="showCalendar">
+            <div class="card-body">
+                <div class="row">
+                <full-calendar [options]='calendarOptions' >
+                </full-calendar>
+            </div>
+            </div>
+            
+        </div>
         
         
         

@@ -10,6 +10,7 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { OfferPipe } from '../core/pipes/offer.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { ToastrModule } from 'ngx-toastr';
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { VmRequestComponent } from './vm-request/vm-request.component';
@@ -36,6 +37,8 @@ import { LanguageModalComponent } from './profile/language-modal/language-modal.
 import { EditLanguageModalComponent } from './profile/edit-language-modal/edit-language-modal.component';
 import { DocsComponent } from './docs/docs.component';
 import { AddDocsComponent } from './docs/add-docs/add-docs.component';
+import { MeetingScheduleFormComponent } from './meeting-schedule-form/meeting-schedule-form.component';
+import { RequestMeetingInfoComponent } from './request-meeting-info/request-meeting-info.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ import { AddDocsComponent } from './docs/add-docs/add-docs.component';
     LanguageModalComponent,
     EditLanguageModalComponent,
     DocsComponent,
-    AddDocsComponent
+    AddDocsComponent,
+    MeetingScheduleFormComponent,
+    RequestMeetingInfoComponent
   ],
   imports: [
     CommonModule,
@@ -81,6 +86,7 @@ import { AddDocsComponent } from './docs/add-docs/add-docs.component';
     }),
     NgScrollbarModule,
     NgbProgressbarModule,
+    FullCalendarModule,
     NgxGaugeModule,
     NgbCollapseModule
     

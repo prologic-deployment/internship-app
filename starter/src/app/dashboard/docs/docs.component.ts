@@ -56,7 +56,6 @@ onSelectCvfiles(event:any) {
     const data = new FormData()
     data.append("cv_file", this.cvFiles[0])
     data.append("user", this.userId);
-    console.log("formData",data)
     this.docService.addCv(data).subscribe(res=>{
       this.cvFiles = []
       this.toastr.success('Document uploaded successfully',"Success")

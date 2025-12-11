@@ -52,18 +52,19 @@
 .icon{
     padding: 10px;
     color: rgb(247, 148, 109);
+    font-size: larger;
 }
 .icon:hover{
-    color: #ff6532;
+    color: #eebcac;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 
 .enc-img{
-    width: 40px;
-    height: 45px;
+    width: 70px;
+    height: 70px;
     border-radius: 10px 10px 10px 10px;
     border: 1px solid #8a8989;
 }
@@ -158,3 +159,48 @@
     font-size: 1.2rem;
     line-height: 1.6;
 }
+
+a:hover{
+    text-decoration: underline;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.meeting-btn-wrapper {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 12px;
+  border : 1px solid #ff6532;
+}
+.calendar-btn-wrapper {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.meeting-btn {
+  width: 100%;
+  background: #ffffff;
+  color: #3963ee;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.meeting-btn:hover {
+  background: #ff6532;
+  color: whitesmoke;
+//   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+

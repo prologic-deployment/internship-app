@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,15 @@ import { environment } from 'src/environments/environment.development';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { ResultsService } from 'src/app/core/service/results.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { MeetingScheduleFormComponent } from '../meeting-schedule-form/meeting-schedule-form.component';
+import { CalendarOptions, EventApi, EventClickArg } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import { MeetingRequestService } from 'src/app/core/service/meeting-request.service';
+import { RequestMeetingInfoComponent } from '../request-meeting-info/request-meeting-info.component';
 @Component({
   selector: 'app-offer-details',
   templateUrl: './offer-details.component.html',
@@ -36,6 +45,12 @@ import { ResultsService } from 'src/app/core/service/results.service';
   ]
 })
 export class OfferDetailsComponent {
+    @ViewChild('calendar', { static: false })
+  showCalendar!: boolean;
+  currentEvents: EventApi[] = [];
+  Events: any[]=[];
+  tempEvents: any[]=[];
+
   readonly picsUrl = environment.PTE_IMAGES;
   offer!:any
   encadrant!:any
@@ -59,6 +74,9 @@ export class OfferDetailsComponent {
     private userService:UserServiceService,
     private offerService:InternsService,
     private resultsService:ResultsService,
+    private meetingRequestService : MeetingRequestService,
+    private modalService:NgbModal,
+
     private toastr: ToastrService){}
   
     ngOnInit(): void {
@@ -147,4 +165,116 @@ export class OfferDetailsComponent {
         this.finishQuiz=true
       })
     }
+
+    createRequest(encadrantId:string){
+      const modalRef: NgbModalRef = this.modalService.open(MeetingScheduleFormComponent, {
+      keyboard: false ,
+      backdropClass:'light-blue-backdrop',
+      size: 'lg'
+    });
+    modalRef.componentInstance.payload=encadrantId
+    modalRef.result.then((res)=>{
+    })   
+    }
+
+
+    calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
+    headerToolbar: {
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+    },
+    initialView: "dayGridMonth",
+    weekends: true,
+    editable: true,
+    selectable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+    // select: this.handleDateSelect.bind(this),
+    eventClick: this.handleEventClick.bind(this),
+    eventsSet: this.handleEvents.bind(this),
+    events:[]
+  };
+  handleEvents(events: EventApi[]) {
+    this.currentEvents = events;
+  }
+  getEvent(internId:any){ 
+    this.meetingRequestService.getUserMeetingRequest(internId).subscribe(resultat => {
+            this.Events = resultat.data as any
+            this.Events.forEach(event => {
+              let internEvents
+              if (event.status){
+                internEvents = {
+                id: event._id,
+                title: event.title,
+                start: event.start,
+                end: event.end,
+                intern: event.intern,
+                mentor : event.mentor,
+                classNames: ['fc-event-success']
+              }
+              this.tempEvents.push(internEvents);
+              }else{
+                internEvents = {
+                id: event._id,
+                title: event.title,
+                start: event.start,
+                end: event.end,
+                intern: event.intern,
+                mentor : event.mentor,
+                classNames: ['fc-event-danger']
+              }
+              this.tempEvents.push(internEvents);
+              }
+               
+            })
+            this.calendarOptions.events=this.tempEvents
+            this.Events=this.tempEvents
+            this.tempEvents=[]
+           
+          })
+  }
+  handleEventClick(clickInfo: EventClickArg) {
+    this.eventClick(clickInfo);
+  }
+  eventClick(row:any) {
+   
+    const modalRef: NgbModalRef = this.modalService.open(RequestMeetingInfoComponent, {
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'lg',
+      keyboard: false ,
+      backdropClass:'light-blue-backdrop'
+    });
+    modalRef.componentInstance.payload=row.event.id;
+    modalRef.result.then((res)=>{
+      // this.getEvent(this.selectedTech?._id)
+    })               
+  }
+  toggleCalendar(){
+    if(this.showCalendar){
+      this.showCalendar = true
+      this.showCalendar = false
+      this.questionVisibility = false
+    }
+
+    else{
+      this.getEvent(localStorage.getItem('userId'));
+
+      this.showCalendar = false
+      this.showCalendar = true
+      this.questionVisibility = false
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+

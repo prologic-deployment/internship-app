@@ -1,0 +1,71 @@
+<div class="modal-header modern-header">
+    <h4 class="modal-title">event Request Details</h4>
+    <button type="button" class="btn btn-close" aria-label="Close" (click)="activeModal.close()"> X </button>
+</div>
+
+<div class="modal-body modern-body" *ngIf="event">
+    <div class="row">
+        <div class="col-9">
+            <h2 class="event-title">{{ event.title }}</h2>
+        </div>
+        <div class="col-3">
+            <div class="status-row">
+                <span class="status-badge" [ngClass]="event.status ? 'success' : 'danger'">
+                    <i class="bi" [ngClass]="event.status ? 'bi-check-circle' : 'bi-x-circle'"></i>
+                    {{ event.status ? 'Approved' : 'Pending' }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="details-grid">
+
+        <div class="detail-block">
+            <i class="bi bi-calendar-event icon"></i>
+            <div>
+                <label>Start</label>
+                <p>{{ event.start | date:'fullDate' }} - {{ event.start | date:'shortTime' }}</p>
+            </div>
+        </div>
+
+        <div class="detail-block">
+            <i class="bi bi-clock icon"></i>
+            <div>
+                <label>End</label>
+                <p>{{ event.end | date:'fullDate' }} - {{ event.end | date:'shortTime' }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Profiles -->
+    <div class="people-area">
+
+        <div class="person-box">
+            <img class="avatar" src="{{internImagesURL+event.intern?.image}}">
+            <div class="person-info">
+                <h4>{{ event.intern.firstName }} {{ event.intern.lastName }}</h4>
+                <span>Intern | {{event.intern.departement}}</span>
+            </div>
+        </div>
+
+        <div class="person-box">
+            <img class="avatar" src="{{imagesURL+mentor?.image}}">
+            <div class="person-info">
+                <h4>{{ mentor.firstName }} {{ mentor.lastName }}</h4>
+                <span>Mentor | {{mentor.departement}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Note -->
+    <div class="note-container">
+        <label>Note</label>
+        <p>{{ event.note || 'No notes provided.' }}</p>
+    </div>
+
+</div>

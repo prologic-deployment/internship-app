@@ -30,7 +30,7 @@ getOffers(){
     this.offers.reverse()
     this.userService.getUserById(this.userId).subscribe(res=>{
       this.user = res
-      // this.offers = this.offers.filter(offer => offer.departement === this.user.departement);  
+      this.offers = this.offers.filter(offer => offer.departement === this.user.departement);  
       this.temp =this.offers 
     })  
   });
