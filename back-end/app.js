@@ -6,7 +6,7 @@ const path = require("path");
 require("dotenv/config");
 const app = express();
 const cors = require("cors")
-const { init_stagiaire_account , init_stagiaire_docs, change_isSelected,change_AllPasswords,swap_cvFields} = require("./config/db_init")
+const { init_stagiaire_account , init_stagiaire_docs, change_isSelected,change_AllPasswords,swap_cvFields,archiveUsersAndOffers} = require("./config/db_init")
 
 
 // ============ imporing routes ================
@@ -21,6 +21,7 @@ const labRoute = require("./routes/Lab");
 const taskRoute = require("./routes/Task");
 const networkRoute = require("./routes/NetworkRequest");
 const docsRoute = require("./routes/docs");
+const meetingRoute = require("./routes/meetingRequest");
 
 //========== configuration ============
 
@@ -52,6 +53,7 @@ mongoose
   // init_stagiaire_docs();
   // change_isSelected();
    //change_AllPasswords();
+  //  archiveUsersAndOffers();
 //swap_cvFields();
 
 // ========= configurring routes ==========
@@ -77,6 +79,7 @@ app.use("/api/labs", labRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/network", networkRoute);
 app.use("/api/docs", docsRoute);
+app.use("/api/meeting", meetingRoute);
 
 
 // ======== exporting app ========

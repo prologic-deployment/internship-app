@@ -35,6 +35,32 @@ module.exports.signUp = async function (req, res, next) {
     res.status(500).json(error);
   }
 };
+module.exports.addIntern = async function (req, res, next) {
+  const body = { ...req.body };
+  try {
+    hashedPassword = await bcrypt.hash("Pfe@2026", 10);
+    body.password = hashedPassword;
+    
+    const user = await User.create({ ...body });
+    const cv = await Cv.create({ user: user._id });
+    const docs = await Docs.create({ user: user._id });
+
+      const _user = await User.findByIdAndUpdate(user._id, {
+        cv: cv._id,
+        isEnabled : true,
+        pfe_year : "2026"
+      });
+      if (_user && cv && docs ) {
+        res.status(200).json({
+          message:
+            "Pre-selected intern created!",
+          user: _user,
+        });
+      }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 module.exports.login = async function (req, res, next) {
   try {
     let fetchedUser = await User.findOne({ email: req.body.email })

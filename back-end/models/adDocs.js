@@ -8,6 +8,7 @@ const DocsSchema = mongoose.Schema({
     fiche_presence:{type:String , default : ""},
     rapport:{type:String , default : ""},
     attestation:{type:String , default : ""},
+    cv_file:{type:String , default : ""},
 });
 
 module.exports = mongoose.model("Docs", DocsSchema);

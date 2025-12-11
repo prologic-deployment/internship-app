@@ -18,7 +18,9 @@ const InternshipOfferSchema = new mongoose.Schema({
     },
     progress : {type : Number, default: 0},
     team : [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    closedAt :{ type:Date}
+    closedAt :{ type:Date},
+    pfe_year : { type: String},
+    archived: { type: Boolean , default:false} 
 },
 { timestamps: true }
 );

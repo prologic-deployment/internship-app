@@ -5,7 +5,7 @@ let avatar ="User.jpg"
 const userSchema = mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    phone: { type: String, },
+    phone: { type: String, required: true },
     email: {
         type: String,
         required: true,
@@ -16,8 +16,10 @@ const userSchema = mongoose.Schema({
     image: { type: String ,default: avatar},
     FS: { type: String},
     birthDate: { type: Date},
-    address: { type: String}, 
+    address: { type: String},
     departement: { type: String},
+    university: { type: String},
+    diploma: { type: String},
     gender: { type: String },
     isEnabled: { type: Boolean, default: false },
     isDeleted: { type: Boolean, default: false },
@@ -26,6 +28,9 @@ const userSchema = mongoose.Schema({
     github: { type: String, default: "" },
     linkedin: { type: String, default: "" },
     bio: { type: String},
+    pfe_year: { type: String},
+    archived: { type: Boolean, default: false} 
+
 },
 { timestamps: true }
 );
