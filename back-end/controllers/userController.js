@@ -231,6 +231,18 @@ module.exports.changePswd = async function (req, res) {
     return res.status(500).json(error);
   }
 };
+module.exports.switchToArchive = async function (req, res) {
+  const ID = req.params.id;
+  if (!ObjectId.isValid(ID)) {
+    return res.status(404).json("ID is not valid");
+  }
+  try {
+    await User.findByIdAndUpdate(ID,{ archived: true }, { new: true });
+    res.status(200).json({message : "Intern acrchived"});
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
 module.exports.confirmSignUp = async function (req, res) {
   const ID = req.params.id;
   if (!ObjectId.isValid(ID)) {

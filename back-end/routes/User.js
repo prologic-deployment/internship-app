@@ -21,6 +21,7 @@ router.post("/forgotPassword", userCtr.forgotPassword);  //1
 router.post("/checkpass",  userCtr.checkPassword);
 router.post("/validateCode", userCtr.validateCode); //2
 router.patch("/change-psw/:id", userCtr.changePswd); //3
+router.patch("/switchToArchive/:id", userCtr.switchToArchive); 
 router.get("/getall",authMiddleware, userCtr.getAllUsers);
 router.post("/delete/:id",authMiddleware,userCtr.deleteUser);
 router.get("/getUserByID/:id",authMiddleware,userCtr.getUserById);
