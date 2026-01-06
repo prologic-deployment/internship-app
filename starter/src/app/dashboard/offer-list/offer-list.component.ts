@@ -26,11 +26,10 @@ ngOnInit() :void{
 getOffers(){
   this.offerService.getOffers().subscribe((res:any) => {
     this.offers=res.data;
-    
     this.offers.reverse()
     this.userService.getUserById(this.userId).subscribe(res=>{
       this.user = res
-      this.offers = this.offers.filter(offer => offer.departement === this.user.departement);  
+      this.offers = this.offers.filter(offer => offer.departement === this.user.departement && offer.archived == false);  
       this.temp =this.offers 
     })  
   });
