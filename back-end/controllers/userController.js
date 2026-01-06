@@ -67,6 +67,9 @@ module.exports.login = async function (req, res, next) {
     if (!fetchedUser) {
       return res.status(404).json({ message: "User not found" });
     }
+    if (fetchedUser.archived) {
+      return res.status(404).json({ message: "Your access has been revoked!" });
+    }
 
     if (!fetchedUser.isEnabled) {
       return res.status(403).json({
