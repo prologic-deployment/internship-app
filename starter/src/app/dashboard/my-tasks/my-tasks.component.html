@@ -25,13 +25,15 @@
             <div class="row" *ngIf="tasks.length > 0" style="padding: 10px;">
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                     <h5 class="card-body title">Tasks list</h5>
-                    <div class="task-list-container">
-                        <div class="row" *ngFor="let task of tasks">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 task" (click)="selectTask(task)">
-                                <strong>{{task.title}}</strong>
+                    <ng-scrollbar style="height: 400px;" visibility="hover">
+                        <div class="task-list-container">
+                            <div class="row" *ngFor="let task of tasks">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 task" (click)="selectTask(task)">
+                                    <strong>{{task.title}}</strong>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-scrollbar>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 no-task-selected" *ngIf="!selectedTask">
                     <img class="pic" src="assets/images/notSelected.png" alt="">
@@ -55,9 +57,9 @@
                                     </div>
                                     <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 text-end">
                                         <!-- <div class="col-1"> -->
-                                            <i class="fas fa-pen icon" ngbPopover="Edit task"
-                                                triggers="mouseenter:mouseleave" placement="bottom"
-                                                (click)="updateStatus(selectedTask)"></i>
+                                        <i class="fas fa-pen icon" ngbPopover="Edit task"
+                                            triggers="mouseenter:mouseleave" placement="bottom"
+                                            (click)="updateStatus(selectedTask)"></i>
                                         <!-- </div> -->
                                     </div>
                                     <div class="row">
@@ -65,11 +67,14 @@
                                         <p>{{selectedTask.description}}</p>
                                     </div>
                                     <div class="row date-bar">
-                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Start date: </strong>{{selectedTask.startDate |
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Start date:
+                                            </strong>{{selectedTask.startDate |
                                             date}}</div>
-                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Deadline: </strong>{{selectedTask.endDate | date}}
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"><strong>Deadline:
+                                            </strong>{{selectedTask.endDate | date}}
                                         </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTask.closedAt"><strong>Closed at:
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12"
+                                            *ngIf="selectedTask.closedAt"><strong>Closed at:
                                             </strong>{{selectedTask.closedAt | date}}</div>
                                     </div>
                                     <div class="row executer-bar" *ngIf="selectedTask.assignedTo">

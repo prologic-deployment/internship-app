@@ -1,73 +1,39 @@
 <div class="modal-header editRowModal">
-    <h4 class="modal-title" id="modal-basic-title">
-        <div class="table-modal-header">
-            <div class="modal-about">
-                <div class="fw-bold p-t-10 font-17">
-                    Meeting request</div>
-            </div>
-        </div>
-    </h4>
+  <h4 class="modal-title">Meeting Request</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
 <div class="modal-body">
-    <form class="register-form" [formGroup]="meetingForm" (ngSubmit)="onSubmit(meetingForm)">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-            <label>Title<span class="text-danger">*</span></label>
-            <input 
-                type="text"
-                class="form-control" 
-                placeholder="Write a title for the meeting..."
-                formControlName="title" required>
-                <small class="form-text text-danger"
-                *ngIf="!meetingForm.get('title')?.valid && meetingForm.get('title')?.touched">
-                Title is required
-            </small>
-        </div>
-    </div>
-    <!-- <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-4">
-            <label>Start-date <span class="text-danger">*</span><span class="text-danger">*</span></label>
-            <input 
-                type="datetime-local" 
-                class="form-control" 
-                formControlName="start"
-                required>
-            <small class="form-text text-danger"
-                *ngIf="!meetingForm.get('start')?.valid && meetingForm.get('start')?.touched">
-                Date & time are required
-            </small>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-4">
-            <label>End-date <span class="text-danger">*</span><span class="text-danger">*</span></label>
-            <input 
-                type="datetime-local" 
-                class="form-control" 
-                formControlName="end"
-                required>
-            <small class="form-text text-danger"
-                *ngIf="!meetingForm.get('end')?.valid && meetingForm.get('end')?.touched">
-                Date & time are required
-            </small>
-        </div>
-    </div> -->
-
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-            <label>Note<span class="text-danger">*</span></label>
-            <textarea 
-                class="form-control" 
-                placeholder="Write a note or agenda for the meeting..."
-                formControlName="note">
-            </textarea>
-        </div>
+  <form [formGroup]="meetingForm" (ngSubmit)="onSubmit(meetingForm)">
+    <!-- Title -->
+    <div class="mb-3">
+      <label>Title <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" placeholder="Write a title for the meeting..." formControlName="title" />
+      <small class="text-danger" *ngIf="meetingForm.get('title')?.invalid && meetingForm.get('title')?.touched">
+        Title is required
+      </small>
     </div>
 
+    <!-- Note -->
+    <div class="mb-3">
+      <label>Note <span class="text-danger">*</span></label>
+      <textarea class="form-control" placeholder="Write a note or agenda for the meeting..." formControlName="note"></textarea>
+      <small class="text-danger" *ngIf="meetingForm.get('note')?.invalid && meetingForm.get('note')?.touched">
+        Note is required
+      </small>
+    </div>
+
+    
+
+    <!-- Buttons -->
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Send Meeting Request</button>
-        <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        <span *ngIf="loading" class="button-spinner"></span>
+        {{ loading ? 'Sending...' : 'Send Meeting Request' }}
+      </button>
+      <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
     </div>
-
-</form>
-
+  </form>
 </div>
