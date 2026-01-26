@@ -12,7 +12,8 @@ const upload_cv_file = multer({ storage: cvStorageEngine });
 
 
 router.post("/signup", userCtr.signUp);
-router.post("/addIntern",userCtr.addIntern);
+router.post("/addIntern",authMiddleware,userCtr.addIntern);
+router.put("/editIntern/:id",authMiddleware,userCtr.editIntern);
 router.get("/signup/requests",authMiddleware,userCtr.getSignUpRequests);
 router.post("/confirm-signup/:id",authMiddleware,userCtr.confirmSignUp);
 router.put("/update/:id",authMiddleware,upload.single("image"),userCtr.UpdateUser);

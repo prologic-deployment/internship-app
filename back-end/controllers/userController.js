@@ -61,6 +61,21 @@ module.exports.addIntern = async function (req, res, next) {
     res.status(500).json(error);
   }
 };
+module.exports.editIntern = async function (req, res, next) {
+  const body = { ...req.body };
+  const id = req.params.id
+  try {
+    const user = await User.findByIdAndUpdate(id, body ,{new: true});
+      if (user ) {
+        res.status(200).json({
+          message:"Intern updated!",
+          data : user
+        });
+      }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 module.exports.login = async function (req, res, next) {
   try {
     let fetchedUser = await User.findOne({ email: req.body.email })
