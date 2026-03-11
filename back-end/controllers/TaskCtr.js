@@ -110,7 +110,6 @@ module.exports.create = async function (req, res, next) {
         await updateProjectProgress(task.internshipOffer._id.toString());
         return res.status(201).send({ message : "Task saved successfully", data : task });
     } catch (error) {
-        console.error(error);
         next(Error("Error while saving task"))
     }
 };
